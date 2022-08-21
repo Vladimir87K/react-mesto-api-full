@@ -1,0 +1,15 @@
+.profil__btn-avatar {
+    width: 120px;
+    height: 120px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0;
+    margin-right: 30px;
+}
+
+@media screen and ( max-width: 765px) {
+    .profil__btn-avatar {
+        margin-right: 0;
+        margin-bottom: 25px;
+    }
+}

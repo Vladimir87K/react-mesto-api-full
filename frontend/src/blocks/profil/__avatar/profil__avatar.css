@@ -1,0 +1,12 @@
+.profil__avatar {
+    object-position: center;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.profil__avatar:hover {
+    opacity: 0.2;
+    cursor: url(../../../image/Cursor.svg), auto;
+}

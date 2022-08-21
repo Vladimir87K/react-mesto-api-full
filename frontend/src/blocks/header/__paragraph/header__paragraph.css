@@ -1,0 +1,10 @@
+.header__paragraph {
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
+}
+
+.header__paragraph:hover {
+  opacity: 60%;
+  cursor: pointer;
+}

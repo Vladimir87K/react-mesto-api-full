@@ -1,0 +1,4 @@
+.popup__form_error {
+    outline: none;
+    border-bottom: 2px solid #f00;
+}

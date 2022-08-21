@@ -1,0 +1,22 @@
+.profil-content__profethional {
+  max-width: 45vw;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 16px 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .profil-content__profethional {
+    max-width: 80vw;
+    text-align: center;
+    margin: 15px auto 35px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .profil-content__profethional {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

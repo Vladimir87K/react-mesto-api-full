@@ -1,0 +1,13 @@
+.card__like-img {
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    background-image: url(../../../image/Vector.svg);
+    background-size: 22px 19px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    /*  margin: 0 20px 0 5px; */
+    padding: 0;
+    cursor: pointer;
+}

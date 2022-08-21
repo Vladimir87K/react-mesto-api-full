@@ -1,0 +1,15 @@
+.container__paragraph {
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 auto;
+  position:absolute;
+  left: 20%;
+  bottom: -30px;
+  text-decoration: none;
+  color: #fff
+}
+
+.container__paragraph:hover {
+  cursor: pointer;
+  opacity: 60%;
+}

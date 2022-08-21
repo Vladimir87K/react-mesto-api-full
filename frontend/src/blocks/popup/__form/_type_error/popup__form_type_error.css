@@ -1,0 +1,5 @@
+.popup__form_type_error {
+  color: red;
+  outline: none;
+  border-bottom: 1px solid #f00;
+}
