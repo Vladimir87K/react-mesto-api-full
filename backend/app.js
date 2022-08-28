@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const { celebrate, Joi } = require('celebrate');
 // eslint-disable-next-line import/no-unresolved
-const cors = require('./middlewares/cors');
+const cors = require('cors');
 const usersRoutes = require('./routes/usersRoutes');
 const cardsRoutes = require('./routes/cardsRouters');
 const auth = require('./middlewares/auth');
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 
 app.use(requestLogger);
 
-app.use(cors);
+app.options('*', cors());
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
