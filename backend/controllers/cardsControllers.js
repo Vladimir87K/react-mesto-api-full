@@ -43,7 +43,6 @@ exports.likeCard = (req, res, next) => {
     .orFail(() => { throw new NotFoundError('Такой карточки не найдено'); })
     .then((user) => res.status(200).send({ data: user }))
     .catch((err) => {
-      console.log(err);
       checkErrorValidationId(err, next);
     });
 };
