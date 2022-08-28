@@ -50,7 +50,7 @@ class Auth {
 }
 
 const register = new Auth({
-  urlBase: 'https://auth.nomoreparties.co',
+  urlBase: 'http://localhost:3001',
   headers: {
     "Content-Type": "application/json" 
   }

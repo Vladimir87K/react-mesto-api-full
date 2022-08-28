@@ -7,70 +7,96 @@ class Api {
 
   _checkError(res) {
       if (res.ok) {
+       // Promise.reject(`Произошла ошибка: ${res.status}`);
           return res.json();
-      } else {
+      }  else {
           Promise.reject(`Произошла ошибка: ${res.status}`);
       }
-  }
+    }
 
-
-  getInitialCards() {
+  getInitialCards(token) {
       return fetch(`${this._urlBase}/cards`, {
               method: 'GET',
-              headers: this._headers
+              headers: {
+                "Authorization" : `Bearer ${token}`,
+                'Content-Type': 'application/json'
+                }
           })
           .then(this._checkError)
+          .then((res) => res.data)
   }
 
-  getInitialProfil() {
+  getInitialProfil(token) {
       return fetch(`${this._urlBase}/users/me`, {
               method: 'GET',
-              headers: this._headers
+              headers: {
+                "Authorization" : `Bearer ${token}`,
+                'Content-Type': 'application/json'
+                }
           })
           .then(this._checkError)
+          .then((res) => res.data)
   }
 
-  addNewCards(data) {
+  addNewCards(data, token) {
+    console.log(data, token, 'клик!')
       return fetch(`${this._urlBase}/cards`, {
               method: 'POST',
-              headers: this._headers,
+              headers: {
+                "Authorization" : `Bearer ${token}`,
+                'Content-Type': 'application/json'
+                },
               body: JSON.stringify({
                   name: data.name,
                   link: data.link
               })
           })
           .then(this._checkError)
+          .then((res) => res.data)
   }
 
-  deleteCard(cardId) {
+  deleteCard(cardId, token) {
       return fetch(`${ this._urlBase}/cards/${cardId}`, {
               method: 'DELETE',
-              headers: this._headers,
+              headers: {
+                "Authorization" : `Bearer ${token}`,
+                'Content-Type': 'application/json'
+                }
           })
           .then(this._checkError)
+          .then((res) => res.data)
   }
 
-  correctUserInfo(data) {
+  correctUserInfo(data, token) {
+    console.log(data, token);
       return fetch(`${this._urlBase}/users/me`, {
               method: 'PATCH',
-              headers: this._headers,
+              headers: {
+                "Authorization" : `Bearer ${token}`,
+                'Content-Type': 'application/json'
+                },
               body: JSON.stringify({
                   name: data.name,
                   about: data.about
               })
           })
           .then(this._checkError)
+          .then((res) => res.data)
   }
 
-  correctUserAvatar(data) {
+  correctUserAvatar(data, token) {
       return fetch(`${this._urlBase}/users/me/avatar`, {
               method: 'PATCH',
-              headers: this._headers,
+              headers: {
+                "Authorization" : `Bearer ${token}`,
+                'Content-Type': 'application/json'
+                },
               body: JSON.stringify({
                   avatar: data.avatar
               })
           })
           .then(this._checkError)
+          .then((res) => res.data)
   }
 
 //   addLikeCard(idCard) {
@@ -81,19 +107,23 @@ class Api {
 //           .then(this._checkError)
 //   }
 
-  changeLikeCardStatus(idCard, isLiked) {
+  changeLikeCardStatus(idCard, isLiked, token) {
       return fetch(`${this._urlBase}/cards/${idCard}/likes`, {
               method: isLiked ? 'DELETE' : 'PUT',
-              headers: this._headers,
+              headers: {
+                "Authorization" : `Bearer ${token}`,
+                'Content-Type': 'application/json'
+                }
           })
           .then(this._checkError)
+          .then((res) => res.data)
   }
 }
 
 const api = new Api({
-    urlBase: 'https://mesto.nomoreparties.co/v1/cohort-41',
+    urlBase: 'http://localhost:3001',
     headers: {
-        authorization: 'd2b53e42-b171-4a97-abd9-e550272a84f9',
+        //authorization: 'd2b53e42-b171-4a97-abd9-e550272a84f9',
         'Content-Type': 'application/json'
     }
   });

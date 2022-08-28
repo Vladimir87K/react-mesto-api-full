@@ -8,7 +8,7 @@ const ConflictError = require('../errors/ConflictError');
 const { checkErrorValidation } = require('../errors/errors');
 
 exports.getUsers = (req, res, next) => {
-  User.find({})
+  User.findById(req.user)
     .then((users) => {
       res.status(200).send({ data: users });
     })

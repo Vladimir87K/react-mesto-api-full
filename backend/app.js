@@ -4,10 +4,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const { celebrate, Joi } = require('celebrate');
+// eslint-disable-next-line import/no-unresolved
+const cors = require('./middlewares/cors');
 const usersRoutes = require('./routes/usersRoutes');
 const cardsRoutes = require('./routes/cardsRouters');
 const auth = require('./middlewares/auth');
-const cors = require('./middlewares/cors');
 const { errorUrl, checkErrorsAll } = require('./errors/errors');
 const { login, createUser } = require('./controllers/usersControllers');
 const redex = require('./utils/utils');

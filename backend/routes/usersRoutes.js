@@ -8,7 +8,7 @@ const userRoutes = express.Router();
 
 const redex = require('../utils/utils');
 
-userRoutes.get('/users', getUsers);
+userRoutes.get('/users/me', getUsers);
 
 userRoutes.patch('/users/me', celebrate({
   body: Joi.object().keys({

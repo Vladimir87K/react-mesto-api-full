@@ -32,21 +32,10 @@ const App = () => {
     const [user, setUser] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
     const [email, setEmail] = useState('');    
- //   const [reply, setReply] = useState(false);
+    const [token, setToken] = useState('')
+    //const [start, setStart] = useState(false);
 
-    useEffect(() => {
-         api.getInitialProfil().then((data) => {
-            setCurrentUser(data);
-            })
-            .catch((err) => console.log(err));
-
-        api.getInitialCards().then((data) => {
-            setCards(data);
-            })
-            .catch(err => console.log(err));
-    }, []);
-
-    useEffect(() => {
+        useEffect(() => {
         const jwt = localStorage.getItem("JWT");
         if (jwt) {
             auth.getControl(jwt)
@@ -54,15 +43,31 @@ const App = () => {
                     setEmail(res.data.email);
                     setUser(true);
                     setLoggedIn(true);
+                    setCurrentUser(res.data);
+                    setToken(jwt);
                     navigate("/main");
                 }).catch((err) => console.log(err))
         } else {
             navigate("/sign-up");
         }
-    }, [loggedIn])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loggedIn]);
+
+    useEffect(() => {
+        if (token) { api.getInitialProfil(token).then((data) => {
+           setCurrentUser(data);
+           })
+           .catch((err) => console.log(err));
+
+        api.getInitialCards(token).then((data) => {
+           setCards(data);
+           })
+           .catch(err => console.log(err));
+        }
+   }, [navigate]);
     
     const handleCardLike = (card, isLiked) => {
-        api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
+        api.changeLikeCardStatus(card._id, isLiked, token).then((newCard) => {
           setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
         })
         .catch((err) => console.log(err));
@@ -90,11 +95,13 @@ const App = () => {
 
     const autorizationSubmit = (data) => {
         setEmail(data.email);
+        console.log(data.email);
          auth.getAutorization(data)
             .then((res) => {
                 if (res.token) {
                     setLoggedIn(true);
                     localStorage.setItem('JWT', res.token);
+                    //setToken(res.token);
                     navigate("/main")
                 } else {
                     setEmail('')
@@ -116,7 +123,7 @@ const App = () => {
     }
 
     const handleCardDelete = () => {
-        api.deleteCard(isDeleteCard._id).then(() => {
+        api.deleteCard(isDeleteCard._id, token).then(() => {
             setCards((cards) => cards.filter((c) => c._id !== isDeleteCard._id));
             setIsPopupDelete(false);
         })
@@ -124,7 +131,7 @@ const App = () => {
     }
 
     const onUpdateUser = (e) => {
-        api.correctUserInfo(e).then((data) => {
+        api.correctUserInfo(e, token).then((data) => {
             setCurrentUser(data);
             setIsPopupProfilOpen(false);
         })
@@ -132,7 +139,7 @@ const App = () => {
     }
 
     const onUpdateAvatar = (e) => {
-        api.correctUserAvatar(e).then((data) => {
+        api.correctUserAvatar(e, token).then((data) => {
             setCurrentUser(data);
             setIsPopupAvatarOpen(false);
         })
@@ -140,7 +147,7 @@ const App = () => {
     }
 
     const addNewCard = (e) => {
-        api.addNewCards(e).then((data) => {
+        api.addNewCards(e, token).then((data) => {
             setCards((cards) => {
                 return [data, ...cards];
             });
