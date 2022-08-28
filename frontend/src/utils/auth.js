@@ -50,7 +50,7 @@ class Auth {
 }
 
 const register = new Auth({
-  urlBase: 'http://api.expressmesto.students.nomoredomains.sbs',
+  urlBase: 'http://158.160.10.208',
   headers: {
     "Content-Type": "application/json" 
   }

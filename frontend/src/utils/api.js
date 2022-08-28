@@ -121,7 +121,7 @@ class Api {
 }
 
 const api = new Api({
-    urlBase: 'http://api.expressmesto.students.nomoredomains.sbs',
+    urlBase: 'http://158.160.10.208',
     headers: {
         //authorization: 'd2b53e42-b171-4a97-abd9-e550272a84f9',
         'Content-Type': 'application/json'
