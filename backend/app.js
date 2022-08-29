@@ -1,4 +1,4 @@
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -24,13 +24,6 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-// const corsOptions = {
-//   origin: '*',
-//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-//   preflightContinue: false,
-//   optionsSuccessStatus: 200,
-// };
-
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -46,7 +39,6 @@ app.use((req, res, next) => {
 
 app.use(requestLogger);
 app.use(cors(corsOptions));
-//app.options('*', cors(corsOptions));
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
