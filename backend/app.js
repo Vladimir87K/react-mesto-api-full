@@ -18,12 +18,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const corsOptions = {
-  origin: '*',
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: '*',
+//   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+//   preflightContinue: false,
+//   optionsSuccessStatus: 200,
+// };
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -39,8 +39,8 @@ app.use((req, res, next) => {
 });
 
 app.use(requestLogger);
-
-app.options('*', cors(corsOptions));
+app.use(cors());
+//app.options('*', cors(corsOptions));
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
