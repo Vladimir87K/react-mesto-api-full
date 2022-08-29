@@ -88,14 +88,12 @@ const App = () => {
                 console.log(err);
             })
             .finally(() => {
-                console.log(user);
                 setIsInfoTooltip(true);
             })
     }
 
     const autorizationSubmit = (data) => {
         setEmail(data.email);
-        console.log(data.email);
          auth.getAutorization(data)
             .then((res) => {
                 if (res.token) {
