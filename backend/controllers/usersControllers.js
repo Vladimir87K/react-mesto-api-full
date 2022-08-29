@@ -8,10 +8,8 @@ const ConflictError = require('../errors/ConflictError');
 const { checkErrorValidation } = require('../errors/errors');
 
 exports.getUsers = (req, res, next) => {
-  console.log(req.users);
   User.findById(req.user)
     .then((user) => {
-      console.log(user);
       res.status(200).send({ data: user });
     })
     .catch(next);
