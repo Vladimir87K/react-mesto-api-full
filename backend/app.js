@@ -18,6 +18,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const corsOptions = {
+  origin: 'https://expressmesto.students.nomoredomains.sbs',
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
 // const corsOptions = {
 //   origin: '*',
 //   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
@@ -39,7 +45,7 @@ app.use((req, res, next) => {
 });
 
 app.use(requestLogger);
-
+app.use(cors(corsOptions));
 //app.options('*', cors(corsOptions));
 
 app.post('/signup', celebrate({
@@ -58,8 +64,6 @@ app.post('/signin', celebrate({
     password: Joi.string().required(),
   }).unknown(true),
 }), login);
-
-app.use(cors());
 
 app.use('/', auth, usersRoutes);
 app.use('/', auth, cardsRoutes);
