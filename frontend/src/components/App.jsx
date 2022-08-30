@@ -64,7 +64,7 @@ const App = () => {
            })
            .catch(err => console.log(err));
         }
-   }, [navigate]);
+   }, [token]);
     
     const handleCardLike = (card, isLiked) => {
         api.changeLikeCardStatus(card._id, isLiked, token).then((newCard) => {
