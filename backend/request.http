@@ -1,12 +1,12 @@
-GET http://localhost:3001/users/me
-Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA4YzZiMWEyOTlhMjM5OWI0MGRjZDYiLCJpYXQiOjE2NjE3MDQzNjUsImV4cCI6MTY2MjMwOTE2NX0.i3gfcbIdiMTRNc0VlwUCfsNUi98akybMINRBobNCWGM
+GET http://localhost:3000/users/me
+Authorization : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzBlMDllZTdjYmY1MjYwM2JlMGY5NzIiLCJpYXQiOjE2NjE4NjQ0NDQsImV4cCI6MTY2MjQ2OTI0NH0.6UfHss7HmYaKuaFr8hvmstetVwfmn_e3OycUiWiZq6U
 
 ###
 
-POST http://localhost:3001/signin
+POST http://localhost:3000/signin
 Content-Type: application/json
 
 {
-  "email" : "111111@gmail.com",
-  "password" : "111111"
+  "email" : "333333@gmail.com",
+  "password" : "333333"
 }
