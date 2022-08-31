@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
 let key;
-console.log(NODE_ENV, JWT_SECRET, 'click!!!');
 if (NODE_ENV === 'production') {
   key = JWT_SECRET;
 } else {
